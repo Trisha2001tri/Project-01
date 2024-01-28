@@ -1,103 +1,120 @@
+/** @format */
 
 import { useState } from 'react';
 import logo from '../assets/logo.png';
 
-export default function UserForm({onAddUser}){
-   
+// const initialState = {
+//   image: '',
+//   name: '',
+//   age: '',
+//   gender: '',
+// };
+
+export default function UserForm({ onAddUser }) {
   const [image, setImage] = useState('');
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
   const [gender, setGender] = useState('');
-  
-  
+
+  // The state can be single object rather having separate states for all 4 diff fields
+  // const [formData, setFormData] = useState(initialState)
+
+  // Then handle input function can be replaced to something more readable
+  // function handleInputChange(event) {
+  //   const {name, value} = event.target
+  //   setFormData(prev => ({
+  //     ...prev,
+  //     [name]: value
+  //   }))
+  // }
 
   function handleInputChange(identifier, value) {
     if (identifier === 'image') {
       setImage(value);
-    } else if(identifier === 'name') {
+    } else if (identifier === 'name') {
       setName(value);
-    } else if(identifier === 'age') {
+    } else if (identifier === 'age') {
       setAge(value);
-    } else{
+    } else {
       setGender(value);
     }
   }
-  
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const user = {
-      imge:image,
-      name:name,
+      imge: image,
+      name: name,
       age: parseInt(age),
-      gender:gender,
+      gender: gender,
     };
 
     onAddUser(user);
+
+    // onAddUser(formData)
 
     // Clear form fields
     setImage('');
     setName('');
     setAge('');
     setGender('');
+
+    // setformData(initialState)
   };
 
-    return (
-        <div className="info-container">
-          <form action="" className="info-left" onSubmit={handleSubmit}>
-             <div className="info-left-title">
-                <h2>Enter User Information</h2>
-                <hr />
-              </div>
-              <label>Image Link</label>
-                <input
-                 type="url"
-                 className="info-inputs"
-                 required
-                 value={image}
-                 onChange={(event) => handleInputChange('image', event.target.value)}
-                 />
-              <label>Name</label>
-                 <input
-                   type="text"
-                   className="info-inputs"
-                   required
-                   value={name}
-                   onChange={(event) => handleInputChange('name', event.target.value)}
-                 />
-              <label>Age</label>
-                 <input
-                   type="number"
-                   className="info-inputs"
-                    required
-                    value={age}
-                    onChange={(event) => handleInputChange('age', event.target.value)}
-                 />
+  return (
+    <div className='info-container'>
+      <form action='' className='info-left' onSubmit={handleSubmit}>
+        <div className='info-left-title'>
+          <h2>Enter User Information</h2>
+          <hr />
+        </div>
+        <label>Image Link</label>
+        <input
+          type='url'
+          className='info-inputs'
+          required
+          value={image}
+          //  value={formData.image}  // Value needs to be changed accordingly
+          name='image' // Name should be same as given in the formData object key
+          onChange={(event) => handleInputChange('image', event.target.value)}
+          //  onChange={handleInputChange}
+        />
+        <label>Name</label>
+        <input
+          type='text'
+          className='info-inputs'
+          required
+          value={name}
+          onChange={(event) => handleInputChange('name', event.target.value)}
+        />
+        <label>Age</label>
+        <input
+          type='number'
+          className='info-inputs'
+          required
+          value={age}
+          onChange={(event) => handleInputChange('age', event.target.value)}
+        />
 
-              <label>Gender</label>
-                <select 
-                   className="info-inputs"
-                   required
-                   value={gender}
-                   onChange={(event) => handleInputChange('gender', event.target.value)}
-                >
-                   <option value="">Select Gender</option>
-                   <option value="Male">Male</option>
-                   <option value="Female">Female</option>
-               </select>
+        <label>Gender</label>
+        <select
+          className='info-inputs'
+          required
+          value={gender}
+          onChange={(event) => handleInputChange('gender', event.target.value)}
+        >
+          <option value=''>Select Gender</option>
+          <option value='Male'>Male</option>
+          <option value='Female'>Female</option>
+        </select>
 
-
-              <button
-               type="submit"
-              >
-                Save
-              </button>
-            </form>
-
-
-            <div className="info-right">
-              <img src={logo} alt="A canvas" />
-            </div>
-          </div>
-    );
+        <button type='submit'>Save</button>
+      </form>
+      <div className='info-right'>
+        <img src={logo} alt='A canvas' />
+      </div>
+    </div>
+  );
 }
