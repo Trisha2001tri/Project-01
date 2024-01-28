@@ -65,3 +65,18 @@ export default function App() {
     </>
   );
 }
+
+/**
+ * 1) There is a small issue I noticed in the logic, when a user add the details it won't immediately shows up
+ *    This is because you are using the filterUsers to show up the cards
+ *    Instead build a logic to show all the users initially, and when the filters are applied then only filter out the user and show
+ *
+ * 2) Learn CSS modules and don't put all the styles inside a same css file, this will increaase the initial load time for the website
+ *
+ * 3) Folder structure needs to be improved, watch any video on that or checkout Fundamentals frontend repo to get some idea
+ *
+ * 4) Checkout the other comments on the improvements
+ *
+ * 5) Good work 😁 and continue on the next modules
+ *
+ */
